@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ClassBridge
+
+A full-featured School Management System built with Next.js, TypeScript, and PostgreSQL. Supports three roles — Admin, Teacher, and Student — each with a dedicated dashboard and permissions.
+
+## Features
+
+- **Authentication** — JWT-based login/register with role-based access control (Admin, Teacher, Student)
+- **Class Management** — Create classes, assign teachers, enroll students
+- **Attendance** — Teachers mark daily attendance; students view their own record
+- **Results/Grades** — Teachers record marks per subject; students track their performance
+- **Fees Management** — Admin creates fee records; students view payment status
+- **Timetable** — Class-wise schedules visible to admins, teachers, and students
+- **Announcements** — School-wide notice board
+- **Leave Applications** — Teachers/students apply for leave; admin approves or rejects
+- **Dashboard Analytics** — Real-time stats: total students/teachers, attendance %, fees collected/pending
+
+## Tech Stack
+
+- **Frontend:** Next.js 16 (App Router), TypeScript, Tailwind CSS, lucide-react
+- **Backend:** Next.js API Routes, Prisma ORM
+- **Database:** PostgreSQL (hosted on Neon)
+- **Auth:** JWT (jose for Edge middleware, jsonwebtoken for API routes), bcryptjs for password hashing
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repo:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/nabiha-tanveer/school-management-system.git
+   cd school-management-system
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+   npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables — create a `.env` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+DATABASE_URL="your-postgresql-connection-string"
+JWT_SECRET="your-secret-key"
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+4. Push the Prisma schema to your database:
+```bash
+   npx prisma db push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Run the development server:
+```bash
+   npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+6. Open [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+## Database Schema
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+8 relational models: `User` (with role-based enum), `Class`, `Attendance`, `Result`, `Fees`, `Timetable`, `Announcement`, `Leave`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Roles
+
+| Role    | Access                                                        |
+|---------|-----------------------------------------------------------------|
+| Admin   | Manage classes, students, fees, timetable, announcements, leave approvals |
+| Teacher | Mark attendance, record results, apply for leave                |
+| Student | View own attendance, results, fees, timetable, announcements; apply for leave |
+
+## License
+
+This project was built as part of a learning roadmap and is open for educational use.
