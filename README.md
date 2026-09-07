@@ -50,7 +50,7 @@ JWT_SECRET="your-secret-key"
    npm run dev
 ```
 
-6. Opengleeful-bienenstitch-1b9b02.netlify.app
+6. 🔗 **Live Demo:** [gleeful-bienenstitch-1b9b02.netlify.app](https://gleeful-bienenstitch-1b9b02.netlify.app)
 
 ## Database Schema
 
