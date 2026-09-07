@@ -32,8 +32,10 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
+    // Log the actual error so it shows up in Netlify/Vercel function logs
+    console.error("REGISTER ERROR:", error);
     return NextResponse.json(
-      { error: "Something went wrong" },
+      { error: "Something went wrong", details: String(error) },
       { status: 500 }
     );
   }
